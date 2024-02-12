@@ -1,15 +1,21 @@
 import ITarefa from "../../types/tarefa";
 import Item from "./Item";
 
-function Lista({tarefas}: {tarefas: ITarefa[]}) {
+interface Props {
+    tarefas: ITarefa[],
+    selecionaTarefa: (tarefaSelecionada: ITarefa) => void
+}
+
+function Lista({tarefas, selecionaTarefa}: Props) {
 
     return(
         <aside>
             <h2>Estudos</h2>
             <ul>
-                {tarefas.map((item, index) => (
+                {tarefas.map((item) => (
                     <Item 
-                        key={index}
+                        key={item.id}
+                        selecionaTarefa={selecionaTarefa}
                         {...item}
                     />
                 ))}
