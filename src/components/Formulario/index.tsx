@@ -63,7 +63,7 @@ class Formulario extends React.Component<{ setTarefas: React.Dispatch<React.SetS
                         id="tempo"
                         step="1"
                         min="00:00:00"
-                        max="06:30:00"
+                        max="01:39:59"
                         required
                         value={this.state.tempo}
                         onChange={evento => this.setState({...this.state, tempo: evento.target.value})}

@@ -16,6 +16,15 @@ function Cronometro({selecionado}: Props) {
             setTempo(tempoParaSegundos(selecionado.tempo))
     }, [selecionado]);
 
+    function regressiva(contador: number = 0){
+        setTimeout(() => {
+            if (contador > 0){
+                setTempo(contador - 1);
+                return regressiva(contador - 1);
+            }
+        }, 1000);
+    }
+
     return (
         <div style={
             {
@@ -26,10 +35,12 @@ function Cronometro({selecionado}: Props) {
             }}>
             <h4>Escolha uma tarefa para iniciar</h4>
             <div style={{ padding: "5px" }}>
-                <Relogio />
+                <Relogio tempo={tempo} />
             </div>
             <div style={{ padding: "5px" }}>
-                <Botao>
+                <Botao
+                    onClick = {() => regressiva(tempo)}
+                >
                     Iniciar
                 </Botao>
             </div>
