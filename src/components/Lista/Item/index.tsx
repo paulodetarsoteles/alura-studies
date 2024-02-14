@@ -4,23 +4,25 @@ interface Props extends ITarefa {
     selecionaTarefa: (tarefaSelecionada: ITarefa) => void
 }
 
-function Item({ tarefa, tempo, selecionado, completado, id, selecionaTarefa }: Props){
-    return(
-        <li 
-            style={{color: `${selecionado ? "brown" : ""}`}}
-            onClick={() => selecionaTarefa(
+function Item({ tarefa, tempo, selecionado, completado, id, selecionaTarefa }: Props) {
+    return (
+        <li
+            style={
+                { color: `${selecionado && !completado ? "red" : ""} ${completado ? "green" : ""}` }
+            }
+            onClick={() => !completado && selecionaTarefa(
                 {
-                    tarefa, 
-                    tempo, 
-                    selecionado, 
-                    completado, 
+                    tarefa,
+                    tempo,
+                    selecionado,
+                    completado,
                     id
                 }
             )}
         >
-        <h3>{tarefa}</h3>
-        <span>{tempo}</span>
-    </li>
+            <h3>{tarefa}</h3>
+            <span>{tempo}</span>
+        </li>
     )
 }
 

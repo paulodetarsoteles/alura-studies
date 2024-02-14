@@ -5,10 +5,11 @@ import Botao from "../Botao";
 import Relogio from "./Relogio";
 
 interface Props {
-    selecionado: ITarefa | undefined
+    selecionado: ITarefa | undefined,
+    finalizarTarefa: () => void
 }
 
-function Cronometro({selecionado}: Props) {
+function Cronometro({selecionado, finalizarTarefa}: Props) {
     const [tempo, setTempo] = useState<number>();
 
     useEffect(() => {
@@ -22,6 +23,8 @@ function Cronometro({selecionado}: Props) {
                 setTempo(contador - 1);
                 return regressiva(contador - 1);
             }
+            else 
+                finalizarTarefa();
         }, 1000);
     }
 
@@ -32,15 +35,18 @@ function Cronometro({selecionado}: Props) {
                 padding: "5px",
                 border: "solid",
                 width: "360px"
-            }}>
+            }
+        }>
             <h4>Escolha uma tarefa para iniciar</h4>
-            <div style={{ padding: "5px" }}>
+            <div style={
+                { padding: "5px" }
+            }>
                 <Relogio tempo={tempo} />
             </div>
-            <div style={{ padding: "5px" }}>
-                <Botao
-                    onClick = {() => regressiva(tempo)}
-                >
+            <div style={
+                { padding: "5px" }
+            }>
+                <Botao onClick = {() => regressiva(tempo)}>
                     Iniciar
                 </Botao>
             </div>

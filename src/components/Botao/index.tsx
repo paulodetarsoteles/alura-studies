@@ -1,18 +1,15 @@
-import React from "react";
-
-class Botao extends React.Component<{ 
-    children: React.ReactNode,
+interface Props {
+    onClick?: () => void,
     type?: "button" | "submit" | "reset" | undefined,
-    onClick?: () => void 
-}> {
-    render() {
-        const { type = "button", onClick } = this.props;
-        return (
-            <button type={type} onClick={onClick}>
-                {this.props.children}
-            </button>
-        )
-    }
+    children?: any
+}
+
+function Botao({onClick, type, children}: Props) {
+    return (
+        <button type={type} onClick={onClick}>
+            {children}
+        </button>
+    )
 }
 
 export default Botao;

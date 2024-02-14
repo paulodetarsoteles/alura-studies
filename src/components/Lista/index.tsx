@@ -6,14 +6,19 @@ interface Props {
     selecionaTarefa: (tarefaSelecionada: ITarefa) => void
 }
 
-function Lista({tarefas, selecionaTarefa}: Props) {
+function Lista({ tarefas, selecionaTarefa }: Props) {
 
-    return(
+    return (
         <aside>
             <h2>Estudos</h2>
+            <div>
+                <h5 style={{ color: "blue", margin: "0px" }}>LEGENDA:</h5>
+                <p style={{ color: "red", margin: "0px" }}>Vermelho: selecionada</p>
+                <p style={{ color: "green", margin: "0px" }}>Verde: concluída</p>
+            </div>
             <ul>
                 {tarefas.map((item) => (
-                    <Item 
+                    <Item
                         key={item.id}
                         selecionaTarefa={selecionaTarefa}
                         {...item}

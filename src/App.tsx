@@ -10,23 +10,44 @@ function App() {
 
   function selecionaTarefa(tarefaSelecionada: ITarefa) {
     setSelecionado(tarefaSelecionada);
-    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => 
-      (
-        {
-          ...tarefa, 
-          selecionado: tarefaSelecionada.id === tarefa.id ? true : false
-        }
-      )));
+    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa =>
+    (
+      {
+        ...tarefa,
+        selecionado: tarefaSelecionada.id === tarefa.id ? true : false
+      }
+    )));
+  }
+
+  function finalizarTarefa() {
+    if (selecionado) {
+      setSelecionado(undefined);
+      setTarefas(tarefasAnteriores =>
+        tarefasAnteriores.map(tarefa => {
+          if (tarefa.id === selecionado.id)
+            return {
+              ...tarefa,
+              selecionado: false,
+              completado: true
+            }
+          else 
+            return tarefa;
+        })
+      )
+    };
   }
 
   return (
     <div className="App" style={{ flex: "auto", display: "flex" }}>
       <div>
         <Formulario setTarefas={setTarefas} />
-        <Cronometro selecionado={selecionado} />
+        <Cronometro 
+          selecionado={selecionado} 
+          finalizarTarefa={finalizarTarefa}
+        />
       </div>
-      <Lista 
-        tarefas={tarefas} 
+      <Lista
+        tarefas={tarefas}
         selecionaTarefa={selecionaTarefa}
       />
     </div>
