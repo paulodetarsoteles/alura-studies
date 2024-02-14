@@ -6,7 +6,10 @@ interface Props {
 
 function Botao({onClick, type, children}: Props) {
     return (
-        <button type={type} onClick={onClick}>
+        <button 
+            type={type} 
+            onClick={onClick}
+        >
             {children}
         </button>
     )
