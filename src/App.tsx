@@ -23,7 +23,7 @@ function App() {
     <div className="App" style={{ flex: "auto", display: "flex" }}>
       <div>
         <Formulario setTarefas={setTarefas} />
-        <Cronometro />
+        <Cronometro selecionado={selecionado} />
       </div>
       <Lista 
         tarefas={tarefas} 

@@ -1,9 +1,21 @@
-import { tempoParaSegundos } from "../../utils/date";
+import { useEffect, useState } from "react";
+import ITarefa from "../../types/tarefa";
+import { tempoParaSegundos } from "../../utils/time";
 import Botao from "../Botao";
 import Relogio from "./Relogio";
 
-function Cronometro() {
-    console.log("Teste de conversão: ", tempoParaSegundos("01:01:01"));
+interface Props {
+    selecionado: ITarefa | undefined
+}
+
+function Cronometro({selecionado}: Props) {
+    const [tempo, setTempo] = useState<number>();
+
+    useEffect(() => {
+        if (selecionado?.tempo)
+            setTempo(tempoParaSegundos(selecionado.tempo))
+    }, [selecionado]);
+
     return (
         <div style={
             {
